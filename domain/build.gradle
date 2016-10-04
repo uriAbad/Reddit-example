@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+
+dependencies {
+    def domainDependencies = rootProject.ext.domainDependencies
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+
+    compile domainDependencies.dagger
+    compile domainDependencies.javaxAnnotation
+    compile presentationDependencies.rxJava
+}
