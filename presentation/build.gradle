@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "ctesting.cleancountries"
+        minSdkVersion 21
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    def presentationDependencies = rootProject.ext.presentationDependencies
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+
+    apt     presentationDependencies.butterknifeApt
+    compile presentationDependencies.butterknife
+    compile presentationDependencies.appCompatV7
+    compile presentationDependencies.recyclerviewV7
+    compile presentationDependencies.cardviewV7
+    compile presentationDependencies.supportV4
+    compile presentationDependencies.stheto
+    compile presentationDependencies.sthetoHttp
+    compile presentationDependencies.sthetoRealm
+    compile presentationDependencies.timber
+    compile presentationDependencies.dagger
+    apt     presentationDependencies.daggerApt
+    compile presentationDependencies.javaxAnnotation
+    compile presentationDependencies.rxJava
+    compile presentationDependencies.rxAndroid
+
+    compile project(path: ':domain')
+    compile project(path: ':data')
+
+}
