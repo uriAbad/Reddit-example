@@ -24,6 +24,7 @@ public class CleanCountries extends Application {
         return applicationComponent;
     }
 
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -39,7 +40,7 @@ public class CleanCountries extends Application {
     private void initializeInjection() {
         this.applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
-                .netModule(new NetModule("https://jsonplaceholder.typicode.com/"))
+                .netModule(new NetModule(this))
                 .build();
     }
 

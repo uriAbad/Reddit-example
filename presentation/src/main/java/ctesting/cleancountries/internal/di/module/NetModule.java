@@ -30,19 +30,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetModule {
 
-    final String base_url;
+    private final static String BASE_URL = "";
+    private final CleanCountries application;
 
-    public NetModule(String base_url) {this.base_url = base_url;}
+    public NetModule(CleanCountries application) {
+        this.application = application;
+    }
 
     @Provides
     @Singleton
-    SharedPreferences providesSharedPreferences(CleanCountries application){
+    SharedPreferences providesSharedPreferences(){
         return PreferenceManager.getDefaultSharedPreferences(application);
     }
 
     @Provides
     @Singleton
-    Cache provideOkHttpCache(CleanCountries application){
+    Cache provideOkHttpCache(){
         int cacheSize = 10 * 1024 * 1024;
         Cache cache = new Cache(application.getCacheDir(),cacheSize);
         return cache;
@@ -75,7 +78,7 @@ public class NetModule {
     Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient){
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(base_url)
+                .baseUrl(BASE_URL)
                 .client(okHttpClient)
                 .build();
         return retrofit;

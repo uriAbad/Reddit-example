@@ -37,7 +37,7 @@ public abstract class BaseActivity extends Activity {
         return ((CleanCountries)getApplication()).getApplicationComponent();
     }
 
-    protected ActivityModule getActivityModule(){
+    protected ActivityModule getActivityModule() {
         return new ActivityModule(this);
     }
 
