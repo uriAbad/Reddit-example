@@ -1,6 +1,5 @@
 package ctesting.cleancountries.internal.di.component;
 
-import ctesting.cleancountries.internal.di.ApplicationComponent;
 import ctesting.cleancountries.internal.di.PerActivity;
 import ctesting.cleancountries.internal.di.module.ActivityModule;
 import ctesting.cleancountries.internal.di.module.UserModule;

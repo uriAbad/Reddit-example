@@ -3,30 +3,30 @@ package testing.data.repository.datasource;
 import java.util.List;
 
 import rx.Observable;
+import testing.data.cache.UserCache;
 import testing.data.entity.UserEntity;
-import testing.data.net.UserService;
 
 /**
- * Created by Uri Abad on 29/09/2016.
+ * Created by Uri Abad on 06/10/2016.
  * Seidor S.A.
  * oabad@seidor.es
  */
 
-public class CloudUserDataStore implements UserDataStore {
+public class DiskUserDataStore implements UserDataStore {
 
-    private final UserService userService;
+    private final UserCache userCache;
 
-    public CloudUserDataStore(UserService userService) {
-        this.userService = userService;
+    public DiskUserDataStore(UserCache userCache) {
+        this.userCache = userCache;
     }
 
     @Override
     public Observable<List<UserEntity>> userEntityList() {
-        return this.userService.getUsers();
+        return this.userCache.get();
     }
 
     @Override
     public Observable<UserEntity> userEntityDetails(final int userId) {
-        return null;
+        return this.userCache.get(userId);
     }
 }

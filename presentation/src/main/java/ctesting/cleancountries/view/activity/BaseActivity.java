@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import ctesting.cleancountries.CleanCountries;
 import ctesting.cleancountries.Navigator.Navigator;
-import ctesting.cleancountries.internal.di.ApplicationComponent;
+import ctesting.cleancountries.internal.di.component.ApplicationComponent;
 import ctesting.cleancountries.internal.di.module.ActivityModule;
 
 /**

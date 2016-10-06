@@ -5,10 +5,11 @@ import android.app.Application;
 import com.facebook.stetho.Stetho;
 import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
 
-import ctesting.cleancountries.internal.di.ApplicationComponent;
-import ctesting.cleancountries.internal.di.ApplicationModule;
-import ctesting.cleancountries.internal.di.DaggerApplicationComponent;
+import ctesting.cleancountries.internal.di.component.ApplicationComponent;
+import ctesting.cleancountries.internal.di.component.DaggerApplicationComponent;
+import ctesting.cleancountries.internal.di.module.ApplicationModule;
 import ctesting.cleancountries.internal.di.module.NetModule;
+import ctesting.cleancountries.internal.di.module.RealmModule;
 import timber.log.Timber;
 
 /**
@@ -28,7 +29,6 @@ public class CleanCountries extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         initializeInjection();
         if(BuildConfig.DEBUG){
             initializeStheto();
@@ -41,6 +41,7 @@ public class CleanCountries extends Application {
         this.applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .netModule(new NetModule(this))
+                .realmModule(new RealmModule(this))
                 .build();
     }
 

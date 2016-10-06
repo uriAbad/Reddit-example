@@ -39,6 +39,7 @@ ext {
             sthetoHttp      :   "com.facebook.stetho:stetho-okhttp3:${sthetoVersion}",
             retrofit2       :   "com.squareup.retrofit2:retrofit:${retrofit2Version}",
             retrofit2Gson   :   "com.squareup.retrofit2:converter-gson:${retrofit2Version}",
+            retrofit2Rx     :   "com.squareup.retrofit2:adapter-rxjava:${retrofit2Version}",
             appCompatV7     :   "com.android.support:appcompat-v7:${androidSupportVersion}",
             dagger          :   "com.google.dagger:dagger:${daggerVersion}",
             daggerApt       :   "com.google.dagger:dagger-compiler:${daggerVersion}",

@@ -1,4 +1,4 @@
-package ctesting.cleancountries.internal.di;
+package ctesting.cleancountries.internal.di.component;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,10 +9,14 @@ import com.domain.repository.UserRepository;
 
 import javax.inject.Singleton;
 
+import ctesting.cleancountries.internal.di.module.ApplicationModule;
 import ctesting.cleancountries.internal.di.module.NetModule;
+import ctesting.cleancountries.internal.di.module.RealmModule;
 import ctesting.cleancountries.view.activity.BaseActivity;
 import dagger.Component;
 import retrofit2.Retrofit;
+import testing.data.cache.UserCache;
+import testing.data.net.UserService;
 
 /**
  * Created by Uri Abad on 27/09/2016.
@@ -20,7 +24,9 @@ import retrofit2.Retrofit;
  * oabad@seidor.es
  */
 @Singleton
-@Component(modules = {ApplicationModule.class, NetModule.class})
+@Component(modules = {  ApplicationModule.class,
+                        NetModule.class,
+                        RealmModule.class })
 public interface ApplicationComponent {
 
     void inject(BaseActivity baseActivity);
@@ -32,5 +38,8 @@ public interface ApplicationComponent {
     UserRepository userRepository();
 
     Retrofit retrofit();
+    UserService userService();
     SharedPreferences sharedPreferences();
+
+    UserCache userCache();
 }

@@ -32,7 +32,9 @@ public class UserDataRepository implements UserRepository {
 
     @Override
     public Observable<List<User>> users() {
-        return null;
+        return this.userDataStoreFactory.create().userEntityList()
+                .map(this.userEntityDataMapper::transform);
+
     }
 
     @Override

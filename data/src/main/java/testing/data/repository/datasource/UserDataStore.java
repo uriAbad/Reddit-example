@@ -15,5 +15,5 @@ public interface UserDataStore {
 
     Observable<List<UserEntity>> userEntityList();
 
-    Observable<UserEntity> userEntityDetails();
+    Observable<UserEntity> userEntityDetails(final int userId);
 }

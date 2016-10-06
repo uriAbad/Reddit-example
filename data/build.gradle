@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'realm-android'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 24
@@ -18,6 +19,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -30,6 +35,7 @@ dependencies {
     compile dataDependencies.sthetoHttp
     compile dataDependencies.retrofit2
     compile dataDependencies.retrofit2Gson
+    compile dataDependencies.retrofit2Rx
     compile dataDependencies.appCompatV7
     compile dataDependencies.dagger
     apt     dataDependencies.daggerApt

@@ -2,7 +2,6 @@ package ctesting.cleancountries.internal.di.component;
 
 import android.app.Activity;
 
-import ctesting.cleancountries.internal.di.ApplicationComponent;
 import ctesting.cleancountries.internal.di.PerActivity;
 import ctesting.cleancountries.internal.di.module.ActivityModule;
 import dagger.Component;

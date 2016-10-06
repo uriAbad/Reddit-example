@@ -1,4 +1,4 @@
-package ctesting.cleancountries.internal.di;
+package ctesting.cleancountries.internal.di.module;
 
 import android.content.Context;
 

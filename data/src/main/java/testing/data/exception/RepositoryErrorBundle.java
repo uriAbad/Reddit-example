@@ -3,15 +3,16 @@ package testing.data.exception;
 import com.domain.exception.ErrorBundle;
 
 /**
- * Created by Uri Abad on 24/08/16.
+ * Created by Uri Abad on 06/10/2016.
  * Seidor S.A.
  * oabad@seidor.es
  */
-public class RespositoryErrorBundle implements ErrorBundle{
+
+public class RepositoryErrorBundle implements ErrorBundle {
 
     private final Exception exception;
 
-    public RespositoryErrorBundle(Exception exception) {
+    public RepositoryErrorBundle(Exception exception) {
         this.exception = exception;
     }
 
@@ -23,7 +24,7 @@ public class RespositoryErrorBundle implements ErrorBundle{
     @Override
     public String getErrorMessage() {
         String message = "";
-        if(this.exception != null){
+        if (this.exception != null) {
             message = this.exception.getMessage();
         }
         return message;
