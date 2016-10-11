@@ -16,12 +16,14 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ctesting.cleancountries.Model.PostModel;
 import ctesting.cleancountries.Model.UserModel;
 import ctesting.cleancountries.R;
 import ctesting.cleancountries.internal.di.component.UserComponent;
 import ctesting.cleancountries.view.UserListView;
+import ctesting.cleancountries.view.adapter.PostAdapter;
+import ctesting.cleancountries.view.adapter.PostLayoutManager;
 import ctesting.cleancountries.view.adapter.UsersAdapter;
-import ctesting.cleancountries.view.adapter.UsersLayoutManager;
 import ctesting.cleancountries.view.presenter.UserListPresenter;
 
 /**
@@ -34,6 +36,7 @@ public class UserListFragment extends BaseFragment implements UserListView {
 
     @Inject UserListPresenter userListPresenter;
     @Inject UsersAdapter usersAdapter;
+    @Inject PostAdapter postAdapter;
 
     @BindView(R.id.rv_UserList) RecyclerView rv_users;
     @BindView(R.id.rl_ProgressBar) RelativeLayout rl_ProgressBar;
@@ -75,9 +78,9 @@ public class UserListFragment extends BaseFragment implements UserListView {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.userListPresenter.setView(this);
-        if(savedInstanceState == null){
-            this.loadUserList();
-        }
+//        if(savedInstanceState == null){
+//            this.loadUserList();
+//        }
     }
 
     @Override
@@ -104,20 +107,30 @@ public class UserListFragment extends BaseFragment implements UserListView {
         this.userListPresenter.destroy();
     }
 
-    private void loadUserList() {
-        this.userListPresenter.initialize();
+    private void loadUserList(String item) {
+        this.userListPresenter.initialize(item);
     }
 
     private void setupRecyclerView() {
         //TODO: on item click configure
-        this.rv_users.setLayoutManager(new UsersLayoutManager(context()));
-        this.rv_users.setAdapter(usersAdapter);
+//        this.rv_users.setLayoutManager(new UsersLayoutManager(context()));
+//        this.rv_users.setAdapter(usersAdapter);
+
+        this.rv_users.setLayoutManager(new PostLayoutManager(context()));
+        this.rv_users.setAdapter(postAdapter);
     }
 
     @Override
     public void renderUserList(Collection<UserModel> userModelCollection) {
         if(userModelCollection!= null){
             this.usersAdapter.setUsersCollection(userModelCollection);
+        }
+    }
+
+    @Override
+    public void renderPostList(Collection<PostModel> postModelCollection) {
+        if(postModelCollection != null){
+            this.postAdapter.setPostCollection(postModelCollection);
         }
     }
 
@@ -149,6 +162,10 @@ public class UserListFragment extends BaseFragment implements UserListView {
     @Override
     public Context context() {
         return this.getActivity().getApplicationContext();
+    }
+
+    public void loadData(String item){
+        this.loadUserList(item);
     }
 
     interface UserListListener {

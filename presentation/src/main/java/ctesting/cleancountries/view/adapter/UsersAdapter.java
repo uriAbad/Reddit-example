@@ -38,7 +38,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
     @Override
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final View view = this.layoutInflater.inflate(R.layout.row_country, parent, false);
+        final View view = this.layoutInflater.inflate(R.layout.row_post_reddit, parent, false);
         return new UserViewHolder(view);
     }
 
@@ -77,6 +77,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
         @BindView(R.id.tvTitle) TextView textViewTitle;
         @BindView(R.id.tcSubtitle) TextView textViewSubtitle;
+
 
         public UserViewHolder(View itemView) {
             super(itemView);

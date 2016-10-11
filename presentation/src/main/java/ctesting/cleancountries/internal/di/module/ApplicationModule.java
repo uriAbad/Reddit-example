@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.domain.executor.PostExecutionThread;
 import com.domain.executor.ThreadExecutor;
+import com.domain.repository.PostRepository;
 import com.domain.repository.UserRepository;
 
 import javax.inject.Singleton;
@@ -12,6 +13,7 @@ import ctesting.cleancountries.CleanCountries;
 import ctesting.cleancountries.UIThread;
 import dagger.Module;
 import dagger.Provides;
+import testing.data.PostDataRepository;
 import testing.data.UserDataRepository;
 import testing.data.executor.JobExecutor;
 
@@ -52,5 +54,11 @@ public class ApplicationModule {
     @Singleton
     UserRepository provideUserRepository(UserDataRepository userDataRepository){
         return userDataRepository;
+    }
+
+    @Provides
+    @Singleton
+    PostRepository providePostRepository(PostDataRepository postDataRepository){
+        return postDataRepository;
     }
 }

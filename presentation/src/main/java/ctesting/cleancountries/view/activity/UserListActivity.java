@@ -3,7 +3,18 @@ package ctesting.cleancountries.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
+import butterknife.BindArray;
+import butterknife.ButterKnife;
 import ctesting.cleancountries.R;
 import ctesting.cleancountries.internal.di.HasComponent;
 import ctesting.cleancountries.internal.di.component.DaggerUserComponent;
@@ -19,6 +30,9 @@ import ctesting.cleancountries.view.fragment.UserListFragment;
 
 public class UserListActivity extends BaseActivity implements HasComponent<UserComponent> {
 
+    @BindArray(R.array.items_list) String[] menu_items;
+    private static UserListFragment userListFragment;
+
     public static Intent getCallingIntent(Context context){
         return new Intent(context, UserListActivity.class);
     }
@@ -29,10 +43,12 @@ public class UserListActivity extends BaseActivity implements HasComponent<UserC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_layout);
+        ButterKnife.bind(this);
 
         this.initializeInjector();
         if(savedInstanceState == null) {
-            addFragment(R.id.fragmentContainer, new UserListFragment());
+            userListFragment = new UserListFragment();
+            addFragment(R.id.fragmentContainer, userListFragment);
         }
     }
 
@@ -46,5 +62,37 @@ public class UserListActivity extends BaseActivity implements HasComponent<UserC
     @Override
     public UserComponent getComponent() {
         return userComponent;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_list_post, menu);
+
+        MenuItem item = menu.findItem(R.id.menu_spinner);
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+        configureSpinner(spinner);
+
+        return true;
+    }
+
+    private void configureSpinner(final Spinner spinner){
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R
+                .layout.simple_spinner_item, menu_items); //selected item will look like a spinner set from XML
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerArrayAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = spinner.getSelectedItem().toString();
+                Log.i("Selected item : ", item);
+                userListFragment.loadData(item);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }

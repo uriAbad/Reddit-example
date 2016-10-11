@@ -1,5 +1,6 @@
 package ctesting.cleancountries.internal.di.module;
 
+import com.domain.interactor.GetPostNewList;
 import com.domain.interactor.GetUserList;
 import com.domain.interactor.UseCase;
 
@@ -32,5 +33,12 @@ public class UserModule {
     @Named("userList")
     UseCase provideGetUserListUseCase(GetUserList getUserList){
         return getUserList;
+    }
+
+    @Provides
+    @PerActivity
+    @Named("postListNew")
+    UseCase provideGetPostListNewUseCase(GetPostNewList getPostNewList){
+        return getPostNewList;
     }
 }

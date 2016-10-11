@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.domain.executor.PostExecutionThread;
 import com.domain.executor.ThreadExecutor;
+import com.domain.repository.PostRepository;
 import com.domain.repository.UserRepository;
 
 import javax.inject.Singleton;
@@ -16,6 +17,7 @@ import ctesting.cleancountries.view.activity.BaseActivity;
 import dagger.Component;
 import retrofit2.Retrofit;
 import testing.data.cache.UserCache;
+import testing.data.net.RedditService;
 import testing.data.net.UserService;
 
 /**
@@ -36,9 +38,11 @@ public interface ApplicationComponent {
     ThreadExecutor threadExecutor();
     PostExecutionThread postExecutionThread();
     UserRepository userRepository();
+    PostRepository postRepository();
 
     Retrofit retrofit();
     UserService userService();
+    RedditService redditService();
     SharedPreferences sharedPreferences();
 
     UserCache userCache();

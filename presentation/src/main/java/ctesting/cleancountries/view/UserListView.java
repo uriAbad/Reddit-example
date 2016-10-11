@@ -2,6 +2,7 @@ package ctesting.cleancountries.view;
 
 import java.util.Collection;
 
+import ctesting.cleancountries.Model.PostModel;
 import ctesting.cleancountries.Model.UserModel;
 
 /**
@@ -13,4 +14,6 @@ import ctesting.cleancountries.Model.UserModel;
 public interface UserListView extends LoadDataView {
 
     void renderUserList(Collection<UserModel> userModelCollection);
+
+    void renderPostList(Collection<PostModel> postModelCollection);
 }

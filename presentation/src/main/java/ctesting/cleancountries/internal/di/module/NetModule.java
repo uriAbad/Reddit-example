@@ -19,6 +19,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import testing.data.net.RedditService;
 import testing.data.net.UserService;
 
 /**
@@ -30,7 +31,7 @@ import testing.data.net.UserService;
 @Module
 public class NetModule {
 
-    private final static String BASE_URL = "https://jsonplaceholder.typicode.com/";
+    private final static String BASE_URL = "https://api.reddit.com/";
     private final CleanCountries application;
 
     public NetModule(CleanCountries application) {
@@ -89,5 +90,11 @@ public class NetModule {
     @Singleton
     UserService provideUserService(Retrofit retrofit){
         return retrofit.create(UserService.class);
+    }
+
+    @Provides
+    @Singleton
+    RedditService provideRedditService(Retrofit retrofit){
+        return retrofit.create(RedditService.class);
     }
 }

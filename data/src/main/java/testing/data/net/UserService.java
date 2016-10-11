@@ -16,4 +16,5 @@ public interface UserService {
 
     @GET("users")
     Observable<List<UserEntity>> getUsers();
+
 }

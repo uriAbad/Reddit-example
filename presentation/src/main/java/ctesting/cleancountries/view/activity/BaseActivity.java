@@ -1,9 +1,9 @@
 package ctesting.cleancountries.view.activity;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import javax.inject.Inject;
 
@@ -17,7 +17,7 @@ import ctesting.cleancountries.internal.di.module.ActivityModule;
  * Seidor S.A.
  * oabad@seidor.es
  */
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Inject Navigator navigator;
 
