@@ -35,4 +35,16 @@ public class PostDataRepository implements PostRepository {
         return this.postDataStoreFactory.create().posts()
                 .map(this.listingEntityDataMapper::transform);
     }
+
+    @Override
+    public Observable<List<Post>> postsHot() {
+        return this.postDataStoreFactory.create().postsHot()
+                .map(this.listingEntityDataMapper::transform);
+    }
+
+    @Override
+    public Observable<List<Post>> postsControversial() {
+        return this.postDataStoreFactory.create().postsControversial()
+                .map(this.listingEntityDataMapper::transform);
+    }
 }

@@ -25,4 +25,16 @@ public class CloudPostDataStore implements PostDataStore{
                 .map(listingEntity -> listingEntity.parseList());
     }
 
+    @Override
+    public Observable<List<PostEntity>> postsHot() {
+        return this.redditService.getPostsHot()
+                .map(listingEntity -> listingEntity.parseList());
+    }
+
+    @Override
+    public Observable<List<PostEntity>> postsControversial() {
+        return this.redditService.getPostsControversial()
+                .map(listingEntity -> listingEntity.parseList());
+    }
+
 }

@@ -107,8 +107,8 @@ public class UserListFragment extends BaseFragment implements UserListView {
         this.userListPresenter.destroy();
     }
 
-    private void loadUserList(String item) {
-        this.userListPresenter.initialize(item);
+    private void loadUserList() {
+        this.userListPresenter.initialize();
     }
 
     private void setupRecyclerView() {
@@ -151,7 +151,7 @@ public class UserListFragment extends BaseFragment implements UserListView {
 
     @Override
     public void hideRetry() {
-        this.rl_retry.setVisibility(View.VISIBLE);
+        this.rl_retry.setVisibility(View.GONE);
     }
 
     @Override
@@ -164,8 +164,20 @@ public class UserListFragment extends BaseFragment implements UserListView {
         return this.getActivity().getApplicationContext();
     }
 
-    public void loadData(String item){
-        this.loadUserList(item);
+    public void loadData(){
+        this.loadUserList();
+    }
+
+    public void loadDataNew() {
+        this.userListPresenter.loadDataNew();
+    }
+
+    public void loadDataHot() {
+        this.userListPresenter.loadDataHot();
+    }
+
+    public void loadDataControversial() {
+        this.userListPresenter.loadDataControversial();
     }
 
     interface UserListListener {

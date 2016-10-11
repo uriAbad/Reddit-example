@@ -13,4 +13,9 @@ import testing.data.entity.PostEntity;
 public interface PostDataStore {
 
     Observable<List<PostEntity>> posts();
+
+    Observable<List<PostEntity>> postsHot();
+
+    Observable<List<PostEntity>> postsControversial();
+
 }

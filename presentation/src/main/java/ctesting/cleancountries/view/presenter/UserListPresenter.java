@@ -35,16 +35,22 @@ public class UserListPresenter implements Presenter {
     private final UserModelDataMapper userModelDataMapper;
     private final PostModelDataMapper postModelDataMapper;
     private final UseCase getPostNewUseCase;
+    private final UseCase getPostNewHotUseCase;
+    private final UseCase getPostNewControversialUseCase;
 
     @Inject
     public UserListPresenter(@Named("userList") UseCase getUserListUseCase,
                              UserModelDataMapper userModelDataMapper,
                              @Named("postListNew") UseCase getPostNewUseCase,
+                             @Named("postListHot") UseCase getPostHotUseCase,
+                             @Named("postListControversial") UseCase getPostControversialUseCase,
                              PostModelDataMapper postModelDataMapper) {
         this.getUserListUseCase = getUserListUseCase;
         this.userModelDataMapper = userModelDataMapper;
 
         this.getPostNewUseCase = getPostNewUseCase;
+        this.getPostNewHotUseCase = getPostHotUseCase;
+        this.getPostNewControversialUseCase = getPostControversialUseCase;
         this.postModelDataMapper = postModelDataMapper;
     }
 
@@ -76,7 +82,7 @@ public class UserListPresenter implements Presenter {
         this.hideViewRetry();
         this.showViewLoading();
 //        this.getUserList();
-        this.getPostsList();
+//        this.getPostsList();
     }
 
     private void showViewLoading() {
@@ -111,6 +117,29 @@ public class UserListPresenter implements Presenter {
 
     private void getPostsList(){
         this.getPostNewUseCase.execute(new PostListsSubscriber());
+    }
+
+    private void getPostsListHot(){
+        this.getPostNewHotUseCase.execute(new PostListsSubscriber());
+    }
+
+    private void getPostsListControversial(){
+        this.getPostNewControversialUseCase.execute(new PostListsSubscriber());
+    }
+
+    public void loadDataNew() {
+        initialize();
+        getPostsList();
+    }
+
+    public void loadDataHot() {
+        initialize();
+        getPostsListHot();
+    }
+
+    public void loadDataControversial() {
+        initialize();
+        getPostsListControversial();
     }
 
     private final class PostListsSubscriber extends DefaultSubscriber<List<Post>>{

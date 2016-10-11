@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -33,7 +32,7 @@ public class UserListActivity extends BaseActivity implements HasComponent<UserC
     @BindArray(R.array.items_list) String[] menu_items;
     private static UserListFragment userListFragment;
 
-    public static Intent getCallingIntent(Context context){
+    public static Intent getCallingIntent(Context context) {
         return new Intent(context, UserListActivity.class);
     }
 
@@ -46,7 +45,7 @@ public class UserListActivity extends BaseActivity implements HasComponent<UserC
         ButterKnife.bind(this);
 
         this.initializeInjector();
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             userListFragment = new UserListFragment();
             addFragment(R.id.fragmentContainer, userListFragment);
         }
@@ -76,7 +75,7 @@ public class UserListActivity extends BaseActivity implements HasComponent<UserC
         return true;
     }
 
-    private void configureSpinner(final Spinner spinner){
+    private void configureSpinner(final Spinner spinner) {
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R
                 .layout.simple_spinner_item, menu_items); //selected item will look like a spinner set from XML
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -84,9 +83,17 @@ public class UserListActivity extends BaseActivity implements HasComponent<UserC
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = spinner.getSelectedItem().toString();
-                Log.i("Selected item : ", item);
-                userListFragment.loadData(item);
+                switch (i){
+                    case 0:
+                        userListFragment.loadDataNew();
+                        break;
+                    case 1:
+                        userListFragment.loadDataHot();
+                        break;
+                    case 2:
+                        userListFragment.loadDataControversial();
+                        break;
+                }
             }
 
             @Override
@@ -95,4 +102,5 @@ public class UserListActivity extends BaseActivity implements HasComponent<UserC
             }
         });
     }
+
 }

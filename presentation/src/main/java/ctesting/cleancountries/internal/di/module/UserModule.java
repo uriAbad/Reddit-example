@@ -1,5 +1,7 @@
 package ctesting.cleancountries.internal.di.module;
 
+import com.domain.interactor.GetPostControversialList;
+import com.domain.interactor.GetPostHotList;
 import com.domain.interactor.GetPostNewList;
 import com.domain.interactor.GetUserList;
 import com.domain.interactor.UseCase;
@@ -39,6 +41,20 @@ public class UserModule {
     @PerActivity
     @Named("postListNew")
     UseCase provideGetPostListNewUseCase(GetPostNewList getPostNewList){
+        return getPostNewList;
+    }
+
+    @Provides
+    @PerActivity
+    @Named("postListHot")
+    UseCase provideGetPostListHotUseCase(GetPostHotList getPostNewList){
+        return getPostNewList;
+    }
+
+    @Provides
+    @PerActivity
+    @Named("postListControversial")
+    UseCase provideGetPostListControversialUseCase(GetPostControversialList getPostNewList){
         return getPostNewList;
     }
 }

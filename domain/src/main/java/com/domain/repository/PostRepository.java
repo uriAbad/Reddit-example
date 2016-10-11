@@ -15,4 +15,8 @@ import rx.Observable;
 public interface PostRepository {
 
     Observable<List<Post>> posts();
+
+    Observable<List<Post>> postsHot();
+
+    Observable<List<Post>> postsControversial();
 }
