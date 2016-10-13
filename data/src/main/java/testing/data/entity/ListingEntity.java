@@ -25,12 +25,13 @@ public class ListingEntity {
         this.data = data;
     }
 
-    public List<PostEntity> parseList(){
+    public List<PostEntity> parseList(PostType postType){
         List<PostEntity> lists = Collections.emptyList();
         if(getData().getChildren()!= null){
             lists = new ArrayList<>();
             for(DataChildrenEntity dataChildrenEntity: getData().getChildren()){
                 PostEntity post = dataChildrenEntity.getPost();
+                post.setPostType(postType);
                 if(post != null){
                     lists.add(post);
                 }

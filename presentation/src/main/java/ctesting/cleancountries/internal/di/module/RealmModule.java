@@ -7,6 +7,8 @@ import dagger.Module;
 import dagger.Provides;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import testing.data.cache.PostCache;
+import testing.data.cache.PostCacheImpl;
 import testing.data.cache.UserCache;
 import testing.data.cache.UserCacheImpl;
 
@@ -42,6 +44,12 @@ public class RealmModule {
     @Singleton
     UserCache provideUserCache(UserCacheImpl userCacheImpl){
         return userCacheImpl;
+    }
+
+    @Provides
+    @Singleton
+    PostCache providePostCache(PostCacheImpl postCacheImpl){
+        return postCacheImpl;
     }
 
 

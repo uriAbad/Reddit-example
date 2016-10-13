@@ -19,6 +19,15 @@ public class PostEntity extends RealmObject {
     private String author;
     private String num_comments;
     private String score;
+    private String postTypeDescription;
+
+    public PostType getPostType() {
+        return PostType.valueOf(postTypeDescription);
+    }
+
+    public void setPostType(PostType postType) {
+        this.postTypeDescription = postType.toString();
+    }
 
     public String getThumbnail() {
         return thumbnail;

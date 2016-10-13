@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import rx.Observable;
+import testing.data.entity.PostType;
 import testing.data.entity.mapper.ListingEntityDataMapper;
 import testing.data.repository.datasource.PostDataStoreFactory;
 
@@ -30,21 +31,22 @@ public class PostDataRepository implements PostRepository {
         this.listingEntityDataMapper = listingEntityDataMapper;
     }
 
+    //TODO: SOLVE DUPLICATE INFO --> POSTTYPE AND POST() METHOD REQUIRES SAME
     @Override
     public Observable<List<Post>> posts() {
-        return this.postDataStoreFactory.create().posts()
+        return this.postDataStoreFactory.create(PostType.NEW).posts()
                 .map(this.listingEntityDataMapper::transform);
     }
 
     @Override
     public Observable<List<Post>> postsHot() {
-        return this.postDataStoreFactory.create().postsHot()
+        return this.postDataStoreFactory.create(PostType.HOT).postsHot()
                 .map(this.listingEntityDataMapper::transform);
     }
 
     @Override
     public Observable<List<Post>> postsControversial() {
-        return this.postDataStoreFactory.create().postsControversial()
+        return this.postDataStoreFactory.create(PostType.CONTROVERSIAL).postsControversial()
                 .map(this.listingEntityDataMapper::transform);
     }
 }

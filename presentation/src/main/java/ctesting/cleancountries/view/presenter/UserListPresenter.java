@@ -75,10 +75,10 @@ public class UserListPresenter implements Presenter {
     }
 
     public void initialize(){
-        this.loadUserList();
+        this.prepareForloadUserList();
     }
 
-    private void loadUserList(){
+    private void prepareForloadUserList(){
         this.hideViewRetry();
         this.showViewLoading();
 //        this.getUserList();
