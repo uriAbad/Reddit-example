@@ -136,7 +136,7 @@ public class UserListFragment extends BaseFragment implements UserListView {
 
     @Override
     public void hideLoading() {
-        this.rl_ProgressBar.setVisibility(View.GONE);
+        this.rl_ProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -151,7 +151,7 @@ public class UserListFragment extends BaseFragment implements UserListView {
 
     @Override
     public void hideRetry() {
-        this.rl_retry.setVisibility(View.GONE);
+        this.rl_retry.setVisibility(View.INVISIBLE);
     }
 
     @Override

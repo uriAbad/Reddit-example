@@ -16,6 +16,15 @@ ext {
     rxJavaVersion           =   '1.0.14'
     rxAndroidVersion        =   '1.0.1'
 
+    //Testing
+    robolectricVersion = '3.0'
+    jUnitVersion = '4.12'
+    assertJVersion = '1.7.1'
+    mockitoVersion = '1.10.5'
+    dexmakerVersion = '1.4'
+    espressoVersion = '2.1'
+    testingSupportLibVersion = '0.1'
+
     presentationDependencies = [
             appCompatV7     :   "com.android.support:appcompat-v7:${androidSupportVersion}",
             cardviewV7      :   "com.android.support:cardview-v7:${androidSupportVersion}",
@@ -34,6 +43,15 @@ ext {
             rxAndroid       :   "io.reactivex:rxandroid:${rxAndroidVersion}"
     ]
 
+    presentationTestDependencies = [
+            mockito:            "org.mockito:mockito-core:${mockitoVersion}",
+            dexmaker:           "com.crittercism.dexmaker:dexmaker:${dexmakerVersion}",
+            dexmakerMockito:    "com.crittercism.dexmaker:dexmaker-mockito:${dexmakerVersion}",
+            dexmakerDx:    "com.crittercism.dexmaker:dexmaker-dx:${dexmakerVersion}",
+            espresso:           "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            testingSupportLib:  "com.android.support.test:testing-support-lib:${testingSupportLibVersion}",
+    ]
+
     dataDependencies = [
             stheto          :   "com.facebook.stetho:stetho:${sthetoVersion}",
             sthetoHttp      :   "com.facebook.stetho:stetho-okhttp3:${sthetoVersion}",
@@ -48,10 +66,22 @@ ext {
             rxAndroid       :   "io.reactivex:rxandroid:${rxAndroidVersion}"
     ]
 
+    dataTestDependencies = [
+            junit:              "junit:junit:${jUnitVersion}",
+            assertj:            "org.assertj:assertj-core:${assertJVersion}",
+            mockito:            "org.mockito:mockito-core:${mockitoVersion}",
+            robolectric:        "org.robolectric:robolectric:${robolectricVersion}",
+    ]
+
     domainDependencies = [
             dagger          :   "com.google.dagger:dagger:${daggerVersion}",
             daggerApt       :   "com.google.dagger:dagger-compiler:${daggerVersion}",
             javaxAnnotation :   "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             rxJava          :   "io.reactivex:rxjava:${rxJavaVersion}"
+    ]
+
+    domainTestDependencies = [
+            junit:              "junit:junit:${jUnitVersion}",
+            mockito:            "org.mockito:mockito-core:${mockitoVersion}",
     ]
 }

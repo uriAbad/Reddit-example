@@ -2,7 +2,8 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="ctesting.cleancountries.view.fragment.UserListFragment">
+             tools:context="ctesting.cleancountries.view.fragment.UserListFragment"
+                android:id="@+id/rl_fragment">
 
     <!-- TODO: Update blank fragment layout -->
 

@@ -2,6 +2,8 @@ package testing.data.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 import io.realm.RealmObject;
 
 /**
@@ -20,6 +22,23 @@ public class PostEntity extends RealmObject {
     private String num_comments;
     private String score;
     private String postTypeDescription;
+    private Date dateRetrieved;
+
+    public String getPostTypeDescription() {
+        return postTypeDescription;
+    }
+
+    public void setPostTypeDescription(String postTypeDescription) {
+        this.postTypeDescription = postTypeDescription;
+    }
+
+    public Date getDateRetrieved() {
+        return dateRetrieved;
+    }
+
+    public void setDateRetrieved(Date dateRetrieved) {
+        this.dateRetrieved = dateRetrieved;
+    }
 
     public PostType getPostType() {
         return PostType.valueOf(postTypeDescription);

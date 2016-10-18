@@ -147,6 +147,7 @@ public class UserListPresenter implements Presenter {
         @Override
         public void onCompleted() {
             UserListPresenter.this.hideViewLoading();
+            System.out.println("COMPLETED");
         }
 
         @Override
@@ -154,11 +155,14 @@ public class UserListPresenter implements Presenter {
             UserListPresenter.this.hideViewLoading();
             UserListPresenter.this.showErrorMessage(new DefaultErrorBundle((Exception) e));
             UserListPresenter.this.showViewRetry();
+            System.out.println("ERROR" + e.getMessage());
+
         }
 
         @Override
         public void onNext(List<Post> posts) {
             UserListPresenter.this.showPostCollectionInView(posts);
+            System.out.println("ONNEXT");
         }
     }
 

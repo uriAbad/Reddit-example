@@ -3,6 +3,8 @@ apply plugin: 'java'
 
 dependencies {
     def domainDependencies = rootProject.ext.domainDependencies
+    def domainTestDependencies = rootProject.ext.domainTestDependencies
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     sourceCompatibility = 1.7
@@ -11,4 +13,7 @@ dependencies {
     compile domainDependencies.dagger
     compile domainDependencies.javaxAnnotation
     compile presentationDependencies.rxJava
+
+    testCompile domainTestDependencies.junit
+    testCompile domainTestDependencies.mockito
 }

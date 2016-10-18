@@ -27,6 +27,7 @@ android {
 
 dependencies {
     def dataDependencies = rootProject.ext.dataDependencies
+    def testDependencies = rootProject.ext.dataTestDependencies
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -42,6 +43,11 @@ dependencies {
     compile dataDependencies.javaxAnnotation
     compile presentationDependencies.rxJava
     compile presentationDependencies.rxAndroid
+
+    testCompile testDependencies.junit
+    testCompile testDependencies.assertj
+    testCompile testDependencies.mockito
+    testCompile testDependencies.robolectric
 
     compile project(path: ':domain')
 }

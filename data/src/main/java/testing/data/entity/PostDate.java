@@ -1,5 +1,7 @@
 package testing.data.entity;
 
+import java.util.Date;
+
 import io.realm.RealmObject;
 
 /**
@@ -10,14 +12,14 @@ import io.realm.RealmObject;
 
 public class PostDate extends RealmObject {
 
-    private long expirationDate;
+    private Date expirationDate;
     private String postType;
 
-    public long getExpirationDate() {
+    public Date getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(long expirationDate) {
+    public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
 

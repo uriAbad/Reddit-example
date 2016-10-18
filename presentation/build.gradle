@@ -12,6 +12,9 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -23,6 +26,7 @@ android {
 
 dependencies {
     def presentationDependencies = rootProject.ext.presentationDependencies
+    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -42,6 +46,15 @@ dependencies {
     compile presentationDependencies.javaxAnnotation
     compile presentationDependencies.rxJava
     compile presentationDependencies.rxAndroid
+
+    androidTestCompile presentationTestDependencies.mockito
+    androidTestCompile presentationTestDependencies.dexmaker
+    androidTestCompile presentationTestDependencies.dexmakerMockito
+    androidTestCompile presentationTestDependencies.dexmakerDx
+    androidTestCompile presentationTestDependencies.espresso
+    androidTestCompile presentationTestDependencies.testingSupportLib
+
+    androidTestCompile 'com.android.support:support-annotations:24.0.0'
 
     compile project(path: ':domain')
     compile project(path: ':data')

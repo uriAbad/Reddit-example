@@ -1,0 +1,58 @@
+package ctesting.cleancountries.view.activity;
+
+import android.app.Fragment;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
+import android.widget.Button;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import ctesting.cleancountries.R;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+/**
+ * Created by Uri Abad on 17/10/2016.
+ * Seidor S.A.
+ * oabad@seidor.es
+ */
+
+@RunWith(AndroidJUnit4.class)
+public class UserListActivityTest{
+
+    @Rule
+    public ActivityTestRule<UserListActivity> activityTestRule = new ActivityTestRule
+            <UserListActivity>(UserListActivity.class);
+
+
+    @Test
+    public void testContainsButton(){
+        UserListActivity userListActivity = activityTestRule.getActivity();
+        Button btn = (Button) userListActivity.findViewById(R.id.btn_retry);
+        assertThat(btn,is(not(nullValue())));
+    }
+
+    @Test
+    public void testFragmentSuccesfullyAdded(){
+        Fragment userListFragment = activityTestRule.getActivity()
+                .getFragmentManager()
+                .findFragmentById(R.id.fragmentContainer);
+        assertThat(userListFragment,is(not(nullValue())));
+    }
+
+    @Test
+    public void testHappyCaseViews(){
+        onView(withId(R.id.rl_retry)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.rl_ProgressBar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.rv_UserList)).check(matches((isDisplayed())));
+    }
+}
