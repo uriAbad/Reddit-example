@@ -17,4 +17,4 @@ dependencies:
 
 test:
     override:
-        - ./gradlew runUnitTests
+        - ./gradlew runDomainUnitTests
