@@ -2,14 +2,20 @@
 # Build configuration for Circle CI
 #
 
+general:
+    artifacts:
+        - /home/ubuntu/Reddit-example/app/build/outputs/apk/
+
 machine:
     environment:
         ANDROID_HOME: /usr/local/android-sdk-linux
 
 dependencies:
     override:
-        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-19.1.0,android-19,extra-google-m2repository,extra-google-google_play_services,extra-android-support
-        - echo n | android create avd -n testing -f -t android-18
+        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-21.1.2,android-21,extra-google-m2repository,extra-google-google_play_services,extra-android-support
+        - ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies
+
 test:
     override:
-    - ./gradlew runUnitTests
+        - (./gradlew assemble):
+            timeout: 360
