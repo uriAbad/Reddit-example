@@ -1,7 +1,7 @@
 #
 # Build configuration for Circle CI
 #
-<<<<<<< HEAD
+
 machine:
     environment:
         ANDROID_HOME: /usr/local/android-sdk-linux
@@ -13,5 +13,3 @@ dependencies:
 test:
     override:
     - ./gradlew runUnitTests
-=======
->>>>>>> 15e70096b434c630ddf2b1a9f2ba71aecfcd03fc
