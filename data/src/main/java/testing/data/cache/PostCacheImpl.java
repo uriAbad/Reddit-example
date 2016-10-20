@@ -14,7 +14,7 @@ import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import testing.data.entity.PostEntity;
 import testing.data.entity.PostType;
-import testing.data.exception.UserNotFoundException;
+import testing.data.exception.NetworkConnectionException;
 
 /**
  * Created by Uri Abad on 13/10/2016.
@@ -48,7 +48,7 @@ public class PostCacheImpl implements PostCache {
                 .asObservable()
                 .map(postEntities -> realm.copyToRealm(postEntities))
                 .first()
-                .doOnError(throwable -> new UserNotFoundException(throwable))
+                .doOnError(throwable -> new NetworkConnectionException(throwable))
                 .doOnCompleted(realm::close)
                 .subscribeOn(AndroidSchedulers.mainThread());
 
