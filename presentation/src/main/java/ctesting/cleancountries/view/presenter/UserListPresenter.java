@@ -81,6 +81,8 @@ public class UserListPresenter implements Presenter {
     private void prepareForloadUserList(){
         this.hideViewRetry();
         this.showViewLoading();
+        //TODO : DELETE
+        System.out.println("LOADING");
 //        this.getUserList();
 //        this.getPostsList();
     }
